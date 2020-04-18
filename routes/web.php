@@ -8,4 +8,3 @@ Route::group(['namespace' => 'WebSite','as' => 'front.'],function (){
     Route::get('/blog/{id}/{title}','FrontController@blog')->name('blog');
 });
 
-Route::feeds();

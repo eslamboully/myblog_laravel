@@ -11,11 +11,29 @@ class FrontController extends Controller {
     {
         $cats = Category::with(['blogs'])->get();
         $recentBlog = Blog::with(['category','admin'])->orderBy('id','desc')->first();
-        $secondRecentBlogs = Blog::with(['category','admin'])->skip(1)->limit(2)->get();
-        $thirdRecentBlogs = Blog::with(['category','admin'])->skip(3)->limit(2)->get();
-        $forthRecentBlogs = Blog::with(['category','admin'])->skip(5)->limit(2)->get();
-        $mostWatchBlogs = Blog::with(['category','admin'])->skip(7)->limit(4)->get();
-        $secondMostWatchBlogs = Blog::with(['category','admin'])->skip(8)->limit(4)->get();
+        $secondRecentBlogs = Blog::with(['category','admin'])
+            ->where('id', '!=', $recentBlog->id)
+            ->orderBy('id','desc')
+            ->limit(2)
+            ->get();
+        $thirdRecentBlogs = Blog::with(['category','admin'])
+            ->orderBy('id','desc')
+            ->skip(3)->limit(2)->get();
+        $forthRecentBlogs = Blog::with(['category','admin'])
+            ->orderBy('id','desc')
+            ->skip(5)
+            ->limit(2)
+            ->get();
+        $mostWatchBlogs = Blog::with(['category','admin'])
+            ->orderBy('id','desc')
+            ->skip(7)
+            ->limit(4)
+            ->get();
+        $secondMostWatchBlogs = Blog::with(['category','admin'])
+            ->orderBy('id','desc')
+            ->skip(8)
+            ->limit(4)
+            ->get();
         $color = ['cat-1','cat-2','cat-3','cat-4'];
 
         return view('front/index',
@@ -34,10 +52,24 @@ class FrontController extends Controller {
     {
         $cats = Category::with(['blogs'])->get();
         $category = Category::find($id);
-        $secondRecentBlogs = Blog::with(['category','admin'])->skip(1)->limit(2)->get();
-        $secondMostWatchBlogs = Blog::with(['category','admin'])->skip(8)->limit(4)->get();
-        $mostWatchBlogs = Blog::with(['category','admin'])->skip(7)->limit(4)->get();
-        $recentBlog = Blog::with(['category','admin'])->orderBy('id','desc')->first();
+        $recentBlog = Blog::with(['category','admin'])
+            ->where('category_id','=',$category->id)
+            ->orderBy('id','desc')->first();
+
+        $secondRecentBlogs = Blog::with(['category','admin'])
+            ->where('category_id','=',$category->id)
+            ->orderBy('id','desc')
+            ->skip(1)->limit(2)->get();
+
+        $secondMostWatchBlogs = Blog::with(['category','admin'])
+            ->where('category_id','=',$category->id)
+            ->orderBy('id','desc')
+            ->skip(3)->limit(4)->get();
+
+        $mostWatchBlogs = Blog::with(['category','admin'])
+            ->where('category_id','=',$category->id)
+            ->orderBy('id','desc')
+            ->skip(7)->limit(4)->get();
         $color = ['cat-1','cat-2','cat-3','cat-4'];
 
         return view('front/category',
@@ -55,17 +87,28 @@ class FrontController extends Controller {
     {
         $cats = Category::with(['blogs'])->get();
         $blog = Blog::find($id);
-        $secondRecentBlogs = Blog::with(['category','admin'])->skip(1)->limit(2)->get();
-        $secondMostWatchBlogs = Blog::with(['category','admin'])->skip(8)->limit(4)->get();
-        $mostWatchBlogs = Blog::with(['category','admin'])->skip(7)->limit(4)->get();
-        $recentBlog = Blog::with(['category','admin'])->orderBy('id','desc')->first();
+        $secondRecentBlogs = Blog::with(['category','admin'])
+            ->where('category_id','=',$blog->category_id)
+            ->orderBy('id','desc')
+            ->skip(1)->limit(2)->get();
+        $secondMostWatchBlogs = Blog::with(['category','admin'])
+            ->where('category_id','=',$blog->category_id)
+            ->orderBy('id','desc')
+            ->skip(3)->limit(4)->get();
+        $mostWatchBlogs = Blog::with(['category','admin'])
+            ->where('category_id','=',$blog->category_id)
+            ->orderBy('id','desc')
+            ->skip(7)->limit(4)->get();
+        $recentBlog = Blog::with(['category','admin'])
+            ->where('category_id','=',$blog->category->id)
+            ->orderBy('id','desc')->first();
         $color = ['cat-1','cat-2','cat-3','cat-4'];
 
         return view('front/blog',
             compact('cats',
                 'color',
-                'blog',
                 'recentBlog',
+                'blog',
                 'secondRecentBlogs',
                 'mostWatchBlogs',
                 'secondMostWatchBlogs'
