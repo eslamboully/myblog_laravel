@@ -7,3 +7,5 @@ Route::group(['namespace' => 'WebSite','as' => 'front.'],function (){
     Route::get('/cateogry/{id}/{title}','FrontController@category')->name('category');
     Route::get('/blog/{id}/{title}','FrontController@blog')->name('blog');
 });
+
+Route::feeds();

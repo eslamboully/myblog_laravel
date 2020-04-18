@@ -4,7 +4,7 @@
 @section('meta')
     <meta name="description" content="مدونة السينيور للمعلومات وكل المواضيع لاثراء المحتوي العربي">
     <meta name="keywords" content="السينيور , مدونة , البرمجة , التعليم , الاخبار">
-    <meta name="title" content="السينيور">
+    <meta name="title" content="مدونة السينيور للمعلومات">
     <meta charset="utf-8"/>
     <meta name="author" content="abdelrahman osama ahmed aleslamboully" />
     <meta name="copyright" content="abdelrahman osama" />
