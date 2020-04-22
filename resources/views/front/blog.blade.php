@@ -1,7 +1,7 @@
 @extends('front.layouts.app')
 @section('title') السنيور | {{ $blog->title }} @endsection
 @section('meta')
-    <meta name="description" content="{{ \Illuminate\Support\Str::limit($blog->description,20) }}">
+    <meta name="description" content="{{ strip_tags(\Illuminate\Support\Str::limit($blog->description,100)) }}">
     <meta name="keywords" content="{{ $blog->keyword }}">
     <meta name="title" content="{{ $blog->title }}">
     <meta charset="utf-8"/>
@@ -123,7 +123,8 @@
 
                         @foreach($secondRecentBlogs as $secondRecentBlog)
                             <div class="post post-widget">
-                                <a class="post-img" href="{{ route('front.blog',["id"=>$secondRecentBlog->id,"title"=>$secondRecentBlog->title]) }}" title="{{ $secondRecentBlog->title }}"><img src="{{ asset('uploads/blogs/'.$secondRecentBlog->photo) }}" style="width: 90px;height: 54px;" title="{{ $secondRecentBlog->title }}" alt="{{ $secondRecentBlog->title }}"></a>
+                                <!-- style="width: 90px;height: 54px;" -->
+                                <a class="post-img" href="{{ route('front.blog',["id"=>$secondRecentBlog->id,"title"=>$secondRecentBlog->title]) }}" title="{{ $secondRecentBlog->title }}"><img src="{{ asset('uploads/blogs/'.$secondRecentBlog->photo) }}"  title="{{ $secondRecentBlog->title }}" alt="{{ $secondRecentBlog->title }}"></a>
                                 <div class="post-body">
                                     <h3 class="post-title"><a href="{{ route('front.blog',["id"=>$secondRecentBlog->id,"title"=>$secondRecentBlog->title]) }}" title="{{ $secondRecentBlog->title }}">{{ $secondRecentBlog->title }}</a></h3>
                                 </div>
@@ -141,7 +142,8 @@
 
                         @foreach($mostWatchBlogs as $mostWatchBlog)
                             <div class="post post-widget">
-                                <a class="post-img" href="{{ route('front.blog',["id"=>$mostWatchBlog->id,"title"=>$mostWatchBlog->title]) }}" title="{{ $mostWatchBlog->title }}"><img src="{{ asset('uploads/blogs/'.$mostWatchBlog->photo) }}" style="width: 90px;height: 54px;" title="{{ $mostWatchBlog->title }}" alt="{{ $mostWatchBlog->title }}"></a>
+                                <!-- style="width: 90px;height: 54px;" -->
+                                <a class="post-img" href="{{ route('front.blog',["id"=>$mostWatchBlog->id,"title"=>$mostWatchBlog->title]) }}" title="{{ $mostWatchBlog->title }}"><img src="{{ asset('uploads/blogs/'.$mostWatchBlog->photo) }}"  title="{{ $mostWatchBlog->title }}" alt="{{ $mostWatchBlog->title }}"></a>
                                 <div class="post-body">
                                     <h3 class="post-title"><a href="{{ route('front.blog',["id"=>$mostWatchBlog->id,"title"=>$mostWatchBlog->title]) }}" title="{{ $mostWatchBlog->title }}">{{ $mostWatchBlog->title }}</a></h3>
                                 </div>

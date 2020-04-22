@@ -106,6 +106,14 @@
                           </p>
                       </a>
                   </li>
+              <li class="nav-item">
+                  <a href="{{ route('front.index') }}" class="nav-link">
+                      <i class="nav-icon fa fa-eye"></i>
+                      <p>
+                          الذهاب للموقع
+                      </p>
+                  </a>
+              </li>
 
               @if(auth()->guard('admin')->user()->can('read_admins'))
                 <li class="nav-item">
