@@ -219,7 +219,7 @@
                                             <span class="post-date">{{ $secondMostWatchBlog->created_at->diffForHumans() }}</span>
                                         </div>
                                         <h3 class="post-title"><a href="{{ route('front.blog',["id"=>$secondMostWatchBlog->id,"title"=>str_replace(' ','-',$secondMostWatchBlog->title)]) }}" title="{{ $secondMostWatchBlog->title }}">{{ $secondMostWatchBlog->title }}</a></h3>
-                                        <p>{{ strip_tags(\Illuminate\Support\Str::limit($secondMostWatchBlog->description,20)) }}</p>
+                                        <p>{{ strip_tags(\Illuminate\Support\Str::limit($secondMostWatchBlog->description,100)) }}</p>
                                     </div>
                                 </div>
                             </div>

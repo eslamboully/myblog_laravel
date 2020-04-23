@@ -41,7 +41,7 @@
                                 <a class="post-img" href="{{ route('front.blog',["id"=>$recentBlog->id,"title"=>str_replace(' ','-',$recentBlog->title)]) }}" title="{{ $recentBlog->title }}"><img src="{{ asset('uploads/blogs/'.$recentBlog->photo) }}" title="{{ $recentBlog->title }}" alt="{{ $recentBlog->title }}"></a>
                                 <div class="post-body">
                                     <div class="post-meta">
-                                        <a class="post-category {{ $color[array_rand($color)] }}" href="{{ route('front.category',["id"=>$recentBlog->category->id,"title"=>str_replace(' ','-',$recentBlog->category->name)]) }}" title="{{ $recentBlog->title }}">{{ $recentBlog->category->name }}</a>
+                                        <a class="post-category {{ $color[array_rand($color)] }}" href="{{ route('front.category',["id"=>$recentBlog->category->id,"title"=>str_replace(' ','-',$recentBlog->category->name)]) }}" title="{{ $recentBlog->category->name }}">{{ $recentBlog->category->name }}</a>
                                         <span class="post-date">{{ $recentBlog->created_at->diffForHumans() }}</span>
                                     </div>
                                     <h3 class="post-title"><a href="{{ route('front.blog',["id"=>$recentBlog->id,"title"=>str_replace(' ','-',$recentBlog->title)]) }}" title="{{ $recentBlog->title }}">{{ $recentBlog->title }}</a></h3>

@@ -169,6 +169,18 @@
 
                     <!-- /archive -->
                 </div>
+
+                <!-- tags -->
+                                <div class="aside-widget">
+                                    <div class="tags-widget">
+                                        <ul>
+                                            @foreach(explode(',',$blog->keyword) as $keyword)
+                                            <li><a href="{{ route('front.search',['q' => $keyword]) }}">{{ $keyword }}</a></li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+            <!-- /tags -->
                 <!-- /aside -->
         <!-- /container -->
             </div>

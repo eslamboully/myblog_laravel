@@ -4,6 +4,7 @@ namespace App\Http\Controllers\WebSite;
 use App\Http\Controllers\Controller;
 use App\Blog;
 use App\Category;
+use Illuminate\Http\Request;
 
 class FrontController extends Controller {
 
@@ -45,6 +46,30 @@ class FrontController extends Controller {
                 'forthRecentBlogs',
                 'mostWatchBlogs',
                 'secondMostWatchBlogs'
+            ));
+    }
+
+    public function search(Request $request)
+    {
+        $cats = Category::with(['blogs'])->get();
+
+        $blogs = Blog::with(['category','admin'])
+            ->orderBy('id','desc')
+            ->where('title','like','%'.$request->q.'%')
+            ->orWhere('keyword','like','%'.$request->q.'%')
+            ->get();
+
+        $color = ['cat-1','cat-2','cat-3','cat-4'];
+
+        $secondRecentBlogs = Blog::with(['category','admin'])
+            ->orderBy('id','desc')
+            ->skip(1)->limit(2)->get();
+
+        return view('front/search',
+            compact('cats',
+                'blogs',
+                'color',
+                'secondRecentBlogs'
             ));
     }
 

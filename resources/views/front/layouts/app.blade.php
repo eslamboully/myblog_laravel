@@ -64,10 +64,10 @@
                 <div class="nav-btns">
                     <button class="aside-btn"><i class="fa fa-bars"></i></button>
                     <button class="search-btn"><i class="fa fa-search"></i></button>
-                    <div class="search-form">
-                        <input class="search-input" type="text" name="search" placeholder="ابحث من هنا ...">
+                    <form class="search-form" action="{{ route('front.search') }}">
+                        <input class="search-input" type="text" name="q" value="{{ request('q') }}" placeholder="ابحث من هنا ...">
                         <button class="search-close"><i class="fa fa-times"></i></button>
-                    </div>
+                    </form>
                 </div>
                 <!-- /search & aside toggle -->
             </div>

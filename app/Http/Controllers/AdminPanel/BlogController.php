@@ -10,7 +10,11 @@ use Illuminate\Support\Facades\Session;
 class BlogController extends Controller{
     public function index()
     {
-        $rows = Blog::all();
+        if (auth()->guard('admin')->user()->id == 1):
+            $rows = Blog::with(['category','admin'])->orderBy('id','desc')->get();
+        else:
+            $rows = Blog::with(['category','admin'])->where('admin_id',auth()->guard('admin')->user()->id)->orderBy('id','desc')->get();
+        endif;
         return view('admin/blogs/index',compact('rows'));
     }
 
